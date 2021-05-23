@@ -1,6 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, UserChangeForm
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from . forms import PasswordChangingForm, EditAccountForm
+from django.views.generic import UpdateView
+
 # Create your views here.
 def logout(request):
     auth.logout(request)
@@ -54,3 +60,18 @@ def login(request):
 
 def profile(request):
     return render(request, "registration/profile.html")
+
+
+class PasswordsChangeView(PasswordChangeView):
+    #form_class = PasswordChangeForm
+    form_class = PasswordChangingForm
+    success_url = reverse_lazy('home')
+
+
+class UserAccountView(UpdateView):
+    form_class = EditAccountForm
+    template_name = 'registration/edit_account.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self):
+        return self.request.user
