@@ -173,6 +173,178 @@ def BookingList(request):
     return Response(serializer.data)
 
 #Create Endpoints
+@api_view(['POST'])
+def ProviderCreate(request):
+    serializer = ProviderSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def ServiceCreate(request):
+    serializer = ServiceSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def CountyCreate(request):
+    serializer = CountySerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def SubCategoryCreate(request):
+    serializer = SubCategorySerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def CategoryCreate(request):
+    serializer = CategorySerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def ProductCreate(request):
+    serializer = ProductSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def CustomerCreate(request):
+    serializer = CustomerSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def EmergencyContactCreate(request):
+    serializer = EmergencyContactSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def StaffCreate(request):
+    serializer = StaffSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def RoleCreate(request):
+    serializer = RoleSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def BookingCreate(request):
+    serializer = BookingSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+#Update Endpoints
+@api_view(['POST'])
+def ProviderUpdate(request, pk):
+    provider = Provider.objects.get(id=pk)
+    serializer = ProviderSerializer(instance=provider, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def ServiceUpdate(request, pk):
+    service = Service.objects.get(id=pk)
+    serializer = ServiceSerializer(instance=service, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def CategoryUpdate(request, pk):
+    category = Category.objects.get(id=pk)
+    serializer = CategorySerializer(instance=category, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def SubCategoryUpdate(request, pk):
+    subcategory = SubCategory.objects.get(id=pk)
+    serializer = SubCategorySerializer(instance=subcategory, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def ProductUpdate(request, pk):
+    product = Product.objects.get(id=pk)
+    serializer = ProductSerializer(instance=product, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def CustomerUpdate(request, pk):
+    customer = Customer.objects.get(id=pk)
+    serializer = CustomerSerializer(instance=customer, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def CountyUpdate(request, pk):
+    county = County.objects.get(id=pk)
+    serializer = CountySerializer(instance=county, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def EmergencyContactUpdate(request, pk):
+    emergencycontact = EmergencyContact.objects.get(id=pk)
+    serializer = EmergencyContactSerializer(instance=emergencycontact, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def StaffUpdate(request, pk):
+    staff = Staff.objects.get(id=pk)
+    serializer = StaffSerializer(instance=staff, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def RoleUpdate(request, pk):
+    role = Role.objects.get(id=pk)
+    serializer = RoleSerializer(instance=role, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def BookingUpdate(request, pk):
+    booking = Booking.objects.get(id=pk)
+    serializer = BookingSerializer(instance=booking, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+
 #Detail Endpoints
 @api_view(['GET'])
 def ProviderDetail(request, pk):
@@ -248,3 +420,70 @@ def BookingDetail(request, pk):
     booking = Booking.objects.get(id=pk)
     serializer = BookingSerializer(booking, many=False)
     return Response(serializer.data)
+
+#Delete Endpoints
+@api_view(['DELETE'])
+def ProductDelete(request, pk):
+    product = Product.objects.get(id=pk)
+    product.delete()
+    return Response("Item Deleted Successfully!")
+
+@api_view(['DELETE'])
+def ProviderDelete(request, pk):
+    provider = Provider.objects.get(id=pk)
+    provider.delete()
+    return Response("Item Deleted Successfully!")
+
+@api_view(['DELETE'])
+def ServiceDelete(request, pk):
+    service = Service.objects.get(id=pk)
+    service.delete()
+    return Response("Item Deleted Successfully!")
+
+@api_view(['DELETE'])
+def CategoryDelete(request, pk):
+    category = Category.objects.get(id=pk)
+    category.delete()
+    return Response("Item Deleted Successfully!")
+
+@api_view(['DELETE'])
+def SubCategoryDelete(request, pk):
+    subcategory = SubCategory.objects.get(id=pk)
+    subcategory.delete()
+    return Response("Item Deleted Successfully!")
+
+@api_view(['DELETE'])
+def CountyDelete(request, pk):
+    county = County.objects.get(id=pk)
+    county.delete()
+    return Response("Item Deleted Successfully!")
+
+@api_view(['DELETE'])
+def EmergencyContactDelete(request, pk):
+    emergencycontact = EmergencyContact.objects.get(id=pk)
+    emergencycontact.delete()
+    return Response("Item Deleted Successfully!")
+
+@api_view(['DELETE'])
+def CustomerDelete(request, pk):
+    customer = Customer.objects.get(id=pk)
+    customer.delete()
+    return Response("Item Deleted Successfully!")
+
+@api_view(['DELETE'])
+def RoleDelete(request, pk):
+    role = Role.objects.get(id=pk)
+    role.delete()
+    return Response("Item Deleted Successfully!")
+
+@api_view(['DELETE'])
+def StaffDelete(request, pk):
+    staff = Staff.objects.get(id=pk)
+    staff.delete()
+    return Response("Item Deleted Successfully!")
+
+@api_view(['DELETE'])
+def BookingDelete(request, pk):
+    booking = Booking.objects.get(id=pk)
+    booking.delete()
+    return Response("Item Deleted Successfully!")
