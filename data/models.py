@@ -24,7 +24,6 @@ class Provider(models.Model):
         return reverse("providers")
     
 
-
 class Service(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
